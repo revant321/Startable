@@ -1,0 +1,243 @@
+/* Default theme tokens — dark-first (Apple-style layered grays) */
+:root {
+  --bg-primary: #1C1C1E;
+  --bg-card: #2C2C2E;
+  --bg-card-hover: #3A3A3C;
+  --bg-elevated: #3A3A3C;
+  --bg-sidenav: #232325;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-divider: rgba(255, 255, 255, 0.05);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #98989F;
+
+  --active-green: #34D399;
+  --passive-blue: #60A5FA;
+  --focus-violet: #7C5CFC;
+
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  --modal-backdrop: rgba(0, 0, 0, 0.45);
+
+  --nav-bg: #232325;
+  --nav-icon-inactive: #98989F;
+  --nav-icon-active: #FFFFFF;
+
+  color-scheme: dark;
+}
+
+/* System-adaptive: when the user hasn't forced a theme, follow OS */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #F2F2F7;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8F8FB;
+    --bg-elevated: #FFFFFF;
+    --bg-sidenav: #FFFFFF;
+
+    --border-subtle: rgba(0, 0, 0, 0.06);
+    --border-divider: rgba(0, 0, 0, 0.04);
+
+    --text-primary: #000000;
+    --text-secondary: #6C6C70;
+
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --modal-backdrop: rgba(0, 0, 0, 0.35);
+
+    --nav-bg: #FFFFFF;
+    --nav-icon-inactive: #8E8E93;
+    --nav-icon-active: #000000;
+
+    color-scheme: light;
+  }
+}
+
+/* Explicit forced themes — override the media query above */
+html.dark {
+  --bg-primary: #1C1C1E;
+  --bg-card: #2C2C2E;
+  --bg-card-hover: #3A3A3C;
+  --bg-elevated: #3A3A3C;
+  --bg-sidenav: #232325;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-divider: rgba(255, 255, 255, 0.05);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #98989F;
+
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  --modal-backdrop: rgba(0, 0, 0, 0.45);
+
+  --nav-bg: #232325;
+  --nav-icon-inactive: #98989F;
+  --nav-icon-active: #FFFFFF;
+
+  color-scheme: dark;
+}
+
+html.light {
+  --bg-primary: #F2F2F7;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8F8FB;
+  --bg-elevated: #FFFFFF;
+  --bg-sidenav: #FFFFFF;
+
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-divider: rgba(0, 0, 0, 0.04);
+
+  --text-primary: #000000;
+  --text-secondary: #6C6C70;
+
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --modal-backdrop: rgba(0, 0, 0, 0.35);
+
+  --nav-bg: #FFFFFF;
+  --nav-icon-inactive: #8E8E93;
+  --nav-icon-active: #000000;
+
+  color-scheme: light;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Card utility */
+.card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: var(--card-shadow);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 20px 24px;
+  }
+}
+
+/* Pill utility */
+.pill {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--card-shadow);
+}
+
+/* App shell — responsive layout */
+.app-shell {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    flex-direction: row;
+  }
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+}
+
+.app-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Side nav surface — overrides any hard-coded background in component styles */
+html .app-shell > nav {
+  background: var(--bg-sidenav) !important;
+  border-right: 1px solid var(--border-subtle) !important;
+}
+
+/* Nav PNG icons are white-on-transparent — invert in light mode so they show on light backgrounds */
+.nav-icon { filter: none; }
+@media (prefers-color-scheme: light) {
+  html:not(.dark):not(.light) .nav-icon { filter: invert(1); }
+}
+html.light .nav-icon { filter: invert(1); }
+html.dark .nav-icon { filter: none; }
+
+/* Frosted modal helpers */
+.modal-backdrop {
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-surface {
+  background: var(--bg-elevated);
+  box-shadow: var(--card-shadow);
+}
+
+/* Desktop page wrapper enhancements */
+@media (min-width: 768px) {
+  .page-header {
+    padding-top: 32px !important;
+    padding-bottom: 20px !important;
+    min-height: 72px !important;
+  }
+
+  .page-title {
+    font-size: 28px !important;
+  }
+}
