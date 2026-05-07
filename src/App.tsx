@@ -33,12 +33,15 @@ export default function App() {
     !location.pathname.startsWith('/focus') &&
     location.pathname !== '/reflection';
 
+  const mainPaddingBottom =
+    isMobile && showNav ? 'calc(60px + env(safe-area-inset-bottom, 0px))' : 0;
+
   return (
     <ToastProvider>
       <ActiveSessionProvider>
         <div className="app-shell">
           {!isMobile && <SideNav visible={showNav} />}
-          <main className="app-main">
+          <main className="app-main" style={{ paddingBottom: mainPaddingBottom }}>
             <div className="app-content">
               <SessionBanner />
               <Routes>

@@ -57,8 +57,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
               <img
                 src={icon}
                 alt=""
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 draggable={false}
                 className="nav-icon"
                 style={{
@@ -79,17 +79,22 @@ export default function BottomNav({ visible }: BottomNavProps) {
 
 const styles: Record<string, React.CSSProperties> = {
   nav: {
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: 56,
+    height: 'calc(60px + env(safe-area-inset-bottom, 0px))',
     paddingBottom: 'env(safe-area-inset-bottom, 0px)',
     background: '#111111',
     borderTop: '1px solid rgba(255,255,255,0.05)',
-    flexShrink: 0,
     overflow: 'hidden',
     userSelect: 'none',
     WebkitUserSelect: 'none',
+    zIndex: 50,
   },
   tab: {
     display: 'flex',
@@ -97,7 +102,7 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: 'center',
     padding: 0,
     minWidth: 56,
-    transform: 'translateY(-2px)',
+    transform: 'translateY(-1px)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
   },
@@ -106,13 +111,13 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 50,
+    width: 44,
+    height: 44,
   },
   activeBubble: {
     position: 'absolute',
-    width: 50,
-    height: 50,
+    width: 44,
+    height: 44,
     borderRadius: '50%',
     backgroundColor: 'rgba(52, 211, 153, 0.2)',
     border: '1px solid rgba(52, 211, 153, 0.3)',
