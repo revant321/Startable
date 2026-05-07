@@ -56,6 +56,14 @@ COMPLETE — Startable v1 build complete
 ## File Structure Reference
 See startable-project-spec.md for full file tree.
 
+## Deployment
+- Hosted on GitHub Pages at https://revant321.github.io/Startable/
+- Deploy with `npm run deploy` — runs `npm run build` then publishes `dist/` to the `gh-pages` branch via the `gh-pages` package
+- Vite `base: '/Startable/'` (vite.config.ts) prefixes all built asset URLs; `BrowserRouter basename="/Startable"` (src/main.tsx) keeps internal routes (`/`, `/goals`, etc.) working under that prefix
+- PWA manifest has `scope: '/Startable/'` and `start_url: '/Startable/'`; manifest icon paths are written as `/Startable/icons/...` since vite-plugin-pwa does not auto-prefix them
+- SPA routing on GitHub Pages: `public/404.html` redirects unknown deep links into `index.html?/<path>`, and an inline script in `index.html` decodes the query back into the real path before React mounts. Standard rafgr/spa-github-pages technique
+- Service worker cache: `registerType: 'autoUpdate'` on vite-plugin-pwa means new deploys are picked up automatically on next visit, but a hard refresh may be needed to skip a cached old shell. If a deploy looks stuck, bump a version string or clear the SW manually via DevTools → Application → Service Workers
+
 ## Session Log
 
 ### 2026-04-09 — Phase 1 Complete
