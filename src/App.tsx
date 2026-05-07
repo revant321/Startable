@@ -34,7 +34,9 @@ export default function App() {
     location.pathname !== '/reflection';
 
   const mainPaddingBottom =
-    isMobile && showNav ? 'calc(60px + env(safe-area-inset-bottom, 0px))' : 0;
+    isMobile && showNav
+      ? 'calc(70px + env(safe-area-inset-bottom, 0px) + 16px)'
+      : 0;
 
   return (
     <ToastProvider>

@@ -25,7 +25,7 @@ export default function PageWrapper({ title, rightAction, children }: PageWrappe
         style={styles.gearButton}
         whileTap={{ opacity: 0.5 }}
       >
-        <Settings size={24} color="#888888" />
+        <Settings size={26} color="#888888" />
       </motion.button>
     );
   };
