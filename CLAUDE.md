@@ -62,7 +62,8 @@ See startable-project-spec.md for full file tree.
 - Vite `base: '/Startable/'` (vite.config.ts) prefixes all built asset URLs; `BrowserRouter basename="/Startable"` (src/main.tsx) keeps internal routes (`/`, `/goals`, etc.) working under that prefix
 - PWA manifest has `scope: '/Startable/'` and `start_url: '/Startable/'`; manifest icon paths are written as `/Startable/icons/...` since vite-plugin-pwa does not auto-prefix them
 - SPA routing on GitHub Pages: `public/404.html` redirects unknown deep links into `index.html?/<path>`, and an inline script in `index.html` decodes the query back into the real path before React mounts. Standard rafgr/spa-github-pages technique
-- Service worker cache: `registerType: 'autoUpdate'` on vite-plugin-pwa means new deploys are picked up automatically on next visit, but a hard refresh may be needed to skip a cached old shell. If a deploy looks stuck, bump a version string or clear the SW manually via DevTools → Application → Service Workers
+- Service worker cache: `registerType: 'autoUpdate'` plus a Workbox config (`cleanupOutdatedCaches`, `clientsClaim`, `skipWaiting`) means each build's hashed assets land in a fresh cache and old caches get evicted on activation. The PWA `<UpdatePrompt />` (src/components/shared/UpdatePrompt.tsx, mounted in App.tsx) calls `r.update()` every 30 minutes while the app is open and shows a top-of-screen pill ("A new version is available — Update / Later") when a new SW is waiting. Tapping Update calls `updateServiceWorker(true)` which activates the new SW and reloads
+- After `npm run deploy`: installed PWAs surface the Update banner within 30 min (or on next launch). For stuck installs (rare), the user should remove the home-screen icon and re-add the PWA, which clears all caches
 
 ## Session Log
 

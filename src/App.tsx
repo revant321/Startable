@@ -16,6 +16,7 @@ import ArchiveScreen from './components/archive/ArchiveScreen';
 import ArchiveGoalView from './components/archive/ArchiveGoalView';
 import { ActiveSessionProvider } from './hooks/useActiveSession';
 import { ToastProvider } from './components/ui/Toast';
+import UpdatePrompt from './components/shared/UpdatePrompt';
 import { useTheme } from './hooks/useTheme';
 import { purgeExpiredTrash } from './utils/trashCleanup';
 import useIsMobile from './hooks/useIsMobile';
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <ToastProvider>
       <ActiveSessionProvider>
+        <UpdatePrompt />
         <div className="app-shell">
           {!isMobile && <SideNav visible={showNav} />}
           <main className="app-main" style={{ paddingBottom: mainPaddingBottom }}>
