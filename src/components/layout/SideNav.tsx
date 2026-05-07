@@ -2,11 +2,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL;
+
 const tabs = [
-  { path: '/', icon: '/icons/home.png', label: 'Home' },
-  { path: '/inbox', icon: '/icons/inbox.png', label: 'Inbox' },
-  { path: '/goals', icon: '/icons/goals.png', label: 'Goals' },
-  { path: '/reflections', icon: '/icons/reflections.png', label: 'Reflections' },
+  { path: '/', icon: `${BASE}icons/home.png`, label: 'Home' },
+  { path: '/inbox', icon: `${BASE}icons/inbox.png`, label: 'Inbox' },
+  { path: '/goals', icon: `${BASE}icons/goals.png`, label: 'Goals' },
+  { path: '/reflections', icon: `${BASE}icons/reflections.png`, label: 'Reflections' },
 ] as const;
 
 interface SideNavProps {
