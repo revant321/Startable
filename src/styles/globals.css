@@ -110,6 +110,10 @@ html.light {
 
 html, body, #root {
   height: 100%;
+  /* iOS Safari/PWA: -webkit-fill-available reflects the visible viewport
+     (excluding any reserved system bands), so the chain doesn't fall short
+     of the actual screen on standalone home-screen launches */
+  height: -webkit-fill-available;
   margin: 0;
   padding: 0;
 }
