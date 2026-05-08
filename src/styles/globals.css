@@ -109,11 +109,7 @@ html.light {
 }
 
 html, body, #root {
-  height: 100%;
-  /* iOS Safari/PWA: -webkit-fill-available reflects the visible viewport
-     (excluding any reserved system bands), so the chain doesn't fall short
-     of the actual screen on standalone home-screen launches */
-  height: -webkit-fill-available;
+  height: 100dvh;
   margin: 0;
   padding: 0;
 }
@@ -164,17 +160,10 @@ body {
   box-shadow: var(--card-shadow);
 }
 
-/* App shell — responsive layout
- * position: fixed + inset:0 anchors the shell to the actual visual
- * viewport. Avoids iOS PWA standalone bugs where 100dvh / height:100%
- * report different rectangles than position:fixed bottom:0 expects,
- * which left the bottom nav floating ~80–100px above the screen edge. */
+/* App shell — responsive layout */
 .app-shell {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-primary);
@@ -193,6 +182,12 @@ body {
   overflow-y: auto;
   min-height: 0;
   display: flex;
+}
+
+@media (max-width: 767px) {
+  .app-main {
+    padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .app-content {
@@ -221,10 +216,14 @@ input, textarea {
   color: inherit;
 }
 
-/* Side nav surface — overrides any hard-coded background in component styles */
-html .app-shell > nav {
-  background: var(--bg-sidenav) !important;
-  border-right: 1px solid var(--border-subtle) !important;
+/* Side nav surface — overrides any hard-coded background in component styles.
+   Scoped to desktop so the mobile fixed-position BottomNav keeps its own
+   var(--nav-bg) background and avoids picking up an unwanted border-right. */
+@media (min-width: 768px) {
+  html .app-shell > nav {
+    background: var(--bg-sidenav) !important;
+    border-right: 1px solid var(--border-subtle) !important;
+  }
 }
 
 /* Nav PNG icons are white-on-transparent — invert in light mode so they show on light backgrounds */

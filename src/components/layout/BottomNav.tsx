@@ -79,17 +79,21 @@ export default function BottomNav({ visible }: BottomNavProps) {
 
 const styles: Record<string, React.CSSProperties> = {
   nav: {
-    flexShrink: 0,
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
     width: '100%',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
     minHeight: 'calc(70px + env(safe-area-inset-bottom, 0px))',
     paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-    background: '#111111',
-    borderTop: '1px solid rgba(255,255,255,0.05)',
+    background: 'var(--nav-bg)',
+    borderTop: '1px solid var(--border-subtle)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
+    zIndex: 50,
   },
   tab: {
     display: 'flex',
