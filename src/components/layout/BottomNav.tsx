@@ -79,10 +79,7 @@ export default function BottomNav({ visible }: BottomNavProps) {
 
 const styles: Record<string, React.CSSProperties> = {
   nav: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    flexShrink: 0,
     width: '100%',
     display: 'flex',
     justifyContent: 'space-around',
@@ -93,7 +90,6 @@ const styles: Record<string, React.CSSProperties> = {
     borderTop: '1px solid rgba(255,255,255,0.05)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
-    zIndex: 50,
   },
   tab: {
     display: 'flex',

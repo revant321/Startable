@@ -160,13 +160,19 @@ body {
   box-shadow: var(--card-shadow);
 }
 
-/* App shell — responsive layout */
+/* App shell — responsive layout
+ * position: fixed + inset:0 anchors the shell to the actual visual
+ * viewport. Avoids iOS PWA standalone bugs where 100dvh / height:100%
+ * report different rectangles than position:fixed bottom:0 expects,
+ * which left the bottom nav floating ~80–100px above the screen edge. */
 .app-shell {
-  width: 100%;
-  height: 100dvh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  position: relative;
   background-color: var(--bg-primary);
   overflow: hidden;
 }
