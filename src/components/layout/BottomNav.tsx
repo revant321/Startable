@@ -38,30 +38,28 @@ export default function BottomNav({ visible }: BottomNavProps) {
             aria-label={label}
             aria-current={active ? 'page' : undefined}
           >
-            <div style={styles.iconWrapper}>
-              {active && (
-                <motion.div
-                  layoutId="activeTab"
-                  style={styles.activePill}
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
-              <img
-                src={icon}
-                alt=""
-                width={40}
-                height={40}
-                draggable={false}
-                className="nav-icon"
-                style={{
-                  opacity: active ? 1 : 0.55,
-                  position: 'relative',
-                  zIndex: 1,
-                  pointerEvents: 'none',
-                  WebkitTouchCallout: 'none',
-                }}
+            {active && (
+              <motion.div
+                layoutId="activeTab"
+                style={styles.activePill}
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
-            </div>
+            )}
+            <img
+              src={icon}
+              alt=""
+              width={44}
+              height={44}
+              draggable={false}
+              className="nav-icon"
+              style={{
+                opacity: active ? 1 : 0.55,
+                position: 'relative',
+                zIndex: 1,
+                pointerEvents: 'none',
+                WebkitTouchCallout: 'none',
+              }}
+            />
             <span
               style={{
                 ...styles.tabLabel,
@@ -86,7 +84,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '12px 10px',
+    padding: '4px 6px',
     borderRadius: 999,
     background: 'var(--nav-glass-bg)',
     backdropFilter: 'blur(40px) saturate(180%)',
@@ -103,8 +101,8 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 2,
-    padding: '4px 2px',
+    gap: 0,
+    padding: '4px 0',
     position: 'relative',
     flex: 1,
     background: 'none',
@@ -113,29 +111,20 @@ const styles: Record<string, React.CSSProperties> = {
     userSelect: 'none',
     WebkitUserSelect: 'none',
   },
-  iconWrapper: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: 44,
-  },
   activePill: {
     position: 'absolute',
-    top: 6,
-    bottom: 6,
-    left: 2,
-    right: 2,
+    inset: 2,
     borderRadius: 999,
     background: 'var(--nav-active-pill-bg)',
     border: '1px solid var(--nav-active-pill-border)',
     zIndex: 0,
   },
   tabLabel: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 500,
     color: 'var(--nav-icon-active)',
     letterSpacing: '0.2px',
+    position: 'relative',
+    zIndex: 1,
   },
 };
