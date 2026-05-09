@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -27,42 +27,34 @@ export default function BottomNav({ visible }: BottomNavProps) {
 
   return (
     <nav style={styles.nav}>
-      {tabs.map(({ path, icon }) => {
+      {tabs.map(({ path, icon, label }) => {
         const active = isActive(path);
         return (
           <motion.button
             key={path}
             onClick={() => navigate(path)}
             style={styles.tab}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.92 }}
+            aria-label={label}
+            aria-current={active ? 'page' : undefined}
           >
-            <div style={styles.iconContainer}>
-              <AnimatePresence>
-                {active && (
-                  <motion.div
-                    key={`bubble-${path}`}
-                    style={styles.activeBubble}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 25,
-                      duration: 0.25,
-                    }}
-                  />
-                )}
-              </AnimatePresence>
+            <div style={styles.iconWrapper}>
+              {active && (
+                <motion.div
+                  layoutId="activeTab"
+                  style={styles.activePill}
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
               <img
                 src={icon}
                 alt=""
-                width={48}
-                height={48}
+                width={26}
+                height={26}
                 draggable={false}
                 className="nav-icon"
                 style={{
-                  opacity: active ? 1.0 : 0.4,
+                  opacity: active ? 1 : 0.55,
                   position: 'relative',
                   zIndex: 1,
                   pointerEvents: 'none',
@@ -70,6 +62,14 @@ export default function BottomNav({ visible }: BottomNavProps) {
                 }}
               />
             </div>
+            <span
+              style={{
+                ...styles.tabLabel,
+                opacity: active ? 1 : 0.55,
+              }}
+            >
+              {label}
+            </span>
           </motion.button>
         );
       })}
@@ -80,50 +80,59 @@ export default function BottomNav({ visible }: BottomNavProps) {
 const styles: Record<string, React.CSSProperties> = {
   nav: {
     position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: '100%',
+    bottom: 'calc(env(safe-area-inset-bottom, 0px) + 12px)',
+    left: 16,
+    right: 16,
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    minHeight: 'calc(70px + env(safe-area-inset-bottom, 0px))',
-    paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-    background: 'var(--nav-bg)',
-    borderTop: '1px solid var(--border-subtle)',
+    padding: '10px 8px',
+    borderRadius: 999,
+    background: 'var(--nav-glass-bg)',
+    backdropFilter: 'blur(40px) saturate(180%)',
+    WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+    border: '1px solid var(--nav-glass-border)',
+    boxShadow:
+      '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
     zIndex: 50,
   },
   tab: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 0,
-    paddingRight: 0,
-    minWidth: 60,
-    marginTop: -1,
+    gap: 2,
+    padding: '6px 10px',
+    position: 'relative',
+    flex: 1,
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
     userSelect: 'none',
     WebkitUserSelect: 'none',
   },
-  iconContainer: {
+  iconWrapper: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 52,
-    height: 52,
+    width: 44,
+    height: 36,
   },
-  activeBubble: {
+  activePill: {
     position: 'absolute',
-    width: 52,
-    height: 52,
-    borderRadius: '50%',
-    backgroundColor: 'rgba(52, 211, 153, 0.2)',
-    border: '1px solid rgba(52, 211, 153, 0.3)',
-    top: 0,
-    left: 0,
+    inset: 0,
+    borderRadius: 14,
+    background: 'var(--nav-active-pill-bg)',
+    border: '1px solid var(--nav-active-pill-border)',
+    zIndex: 0,
+  },
+  tabLabel: {
+    fontSize: 11,
+    fontWeight: 500,
+    color: 'var(--nav-icon-active)',
+    letterSpacing: '0.1px',
   },
 };
