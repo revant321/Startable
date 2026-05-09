@@ -124,19 +124,20 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Block touch-and-hold selection / callout on non-text UI. Inputs,
-   textareas, and explicitly opted-in elements keep normal selection
-   so paragraph text and copy/paste still work. */
-img, svg, button, [role="button"], label,
-h1, h2, h3, h4, h5, h6 {
+/* Default everything to non-selectable so headings, empty-state copy,
+   labels, icons, etc. don't trigger the iOS text-callout on long press.
+   Only editable surfaces (inputs, textareas, contenteditable nodes) and
+   explicit .selectable opt-ins keep text selection. */
+* {
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
 }
 
-input, textarea, [contenteditable="true"], .selectable, p, span {
+input, textarea, [contenteditable="true"], .selectable, .selectable * {
   -webkit-user-select: text;
   user-select: text;
+  -webkit-touch-callout: default;
 }
 
 body {
