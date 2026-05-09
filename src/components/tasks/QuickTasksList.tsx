@@ -168,6 +168,9 @@ export default function QuickTasksList() {
   );
 }
 
+const LONG_PRESS_MS = 350;
+const MOVE_TOLERANCE = 8;
+
 function TaskRow({ task }: { task: QuickTask }) {
   const dragControls = useDragControls();
   const [editingTitle, setEditingTitle] = useState(false);
@@ -177,8 +180,49 @@ function TaskRow({ task }: { task: QuickTask }) {
   const dateInputRef = useRef<HTMLInputElement>(null);
   const [showCheckPop, setShowCheckPop] = useState(false);
 
+  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pressStart = useRef<{ x: number; y: number } | null>(null);
+  const dragStarted = useRef(false);
+
   useEffect(() => setDraftTitle(task.title), [task.title]);
   useEffect(() => setDraftDate(task.dueDate ?? ''), [task.dueDate]);
+
+  const cancelLongPress = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+    pressStart.current = null;
+  };
+
+  const onItemPointerDown = (e: React.PointerEvent<HTMLLIElement>) => {
+    if (editingTitle || editingDate) return;
+    const target = e.target as HTMLElement;
+    if (target.closest('input, textarea')) return;
+    pressStart.current = { x: e.clientX, y: e.clientY };
+    dragStarted.current = false;
+    const nativeEvent = e.nativeEvent;
+    longPressTimer.current = setTimeout(() => {
+      dragStarted.current = true;
+      dragControls.start(nativeEvent);
+      longPressTimer.current = null;
+    }, LONG_PRESS_MS);
+  };
+
+  const onItemPointerMove = (e: React.PointerEvent<HTMLLIElement>) => {
+    if (!pressStart.current || !longPressTimer.current) return;
+    const dx = Math.abs(e.clientX - pressStart.current.x);
+    const dy = Math.abs(e.clientY - pressStart.current.y);
+    if (dx > MOVE_TOLERANCE || dy > MOVE_TOLERANCE) cancelLongPress();
+  };
+
+  const onItemClickCapture = (e: React.MouseEvent<HTMLLIElement>) => {
+    if (dragStarted.current) {
+      e.stopPropagation();
+      e.preventDefault();
+      dragStarted.current = false;
+    }
+  };
 
   const handleToggle = () => {
     if (task.id == null) return;
@@ -218,6 +262,12 @@ function TaskRow({ task }: { task: QuickTask }) {
         zIndex: 5,
       }}
       transition={{ type: 'spring', damping: 28, stiffness: 350 }}
+      onPointerDown={onItemPointerDown}
+      onPointerMove={onItemPointerMove}
+      onPointerUp={cancelLongPress}
+      onPointerCancel={cancelLongPress}
+      onPointerLeave={cancelLongPress}
+      onClickCapture={onItemClickCapture}
     >
       <button
         style={styles.dragHandle}
