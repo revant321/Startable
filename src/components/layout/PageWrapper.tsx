@@ -14,11 +14,11 @@ export default function PageWrapper({ title, rightAction, children }: PageWrappe
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useIsMobile();
-  const isSettings = location.pathname === '/settings';
+  const isHome = location.pathname === '/';
 
   const renderRightAction = () => {
     if (rightAction) return <div>{rightAction}</div>;
-    if (isSettings || !isMobile) return null;
+    if (!isMobile || !isHome) return null;
     return (
       <motion.button
         onClick={() => navigate('/settings')}
