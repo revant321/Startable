@@ -23,7 +23,7 @@ import { clearAllData } from '../../utils/trashCleanup';
 import { useToast } from '../ui/Toast';
 import type { ThemeMode } from '../../hooks/useTheme';
 
-const APP_VERSION = '1.0';
+const APP_VERSION = '1.1';
 
 export default function SettingsScreen() {
   const settings = useSettings();
