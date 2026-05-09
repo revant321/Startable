@@ -109,7 +109,10 @@ html.light {
 }
 
 html, body, #root {
-  height: 100dvh;
+  /* --app-height is set in main.tsx from window.innerHeight, which on iOS PWA
+     standalone reflects the actual visible viewport. Falls back to 100dvh
+     before the JS runs and on browsers that don't fire the listener. */
+  height: var(--app-height, 100dvh);
   margin: 0;
   padding: 0;
 }
