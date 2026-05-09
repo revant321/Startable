@@ -49,8 +49,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
               <img
                 src={icon}
                 alt=""
-                width={26}
-                height={26}
+                width={32}
+                height={32}
                 draggable={false}
                 className="nav-icon"
                 style={{
@@ -86,7 +86,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '10px 8px',
+    padding: '12px 10px',
     borderRadius: 999,
     background: 'var(--nav-glass-bg)',
     backdropFilter: 'blur(40px) saturate(180%)',
@@ -118,21 +118,25 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 44,
-    height: 36,
+    width: 56,
+    height: 44,
   },
   activePill: {
     position: 'absolute',
-    inset: 0,
-    borderRadius: 14,
+    top: 1,
+    left: '50%',
+    width: 52,
+    height: 42,
+    marginLeft: -26,
+    borderRadius: 999,
     background: 'var(--nav-active-pill-bg)',
     border: '1px solid var(--nav-active-pill-border)',
     zIndex: 0,
   },
   tabLabel: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 500,
     color: 'var(--nav-icon-active)',
-    letterSpacing: '0.1px',
+    letterSpacing: '0.2px',
   },
 };
