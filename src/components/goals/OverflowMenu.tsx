@@ -52,22 +52,22 @@ export default function OverflowMenu({ items }: OverflowMenuProps) {
 
       <AnimatePresence>
         {open && isMobile && (
-          <>
-            <motion.div
-              key="overlay"
-              style={styles.overlay}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
-            />
+          <motion.div
+            key="overlay"
+            style={styles.overlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+          >
             <motion.div
               key="sheet"
-              style={styles.sheet}
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              style={styles.centeredSheet}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+              onClick={(e) => e.stopPropagation()}
             >
               {items.map((item, i) => (
                 <button
@@ -84,7 +84,7 @@ export default function OverflowMenu({ items }: OverflowMenuProps) {
                 </button>
               ))}
             </motion.div>
-          </>
+          </motion.div>
         )}
 
         {open && !isMobile && (
@@ -137,18 +137,19 @@ const styles: Record<string, React.CSSProperties> = {
     background: 'var(--modal-backdrop)',
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
     zIndex: 200,
   },
-  sheet: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
+  centeredSheet: {
     background: 'var(--bg-elevated)',
-    borderRadius: '20px 20px 0 0',
-    paddingBottom: 'env(safe-area-inset-bottom, 16px)',
-    zIndex: 201,
+    borderRadius: 16,
+    width: '100%',
+    maxWidth: 320,
     overflow: 'hidden',
+    boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
   },
   sheetItem: {
     width: '100%',

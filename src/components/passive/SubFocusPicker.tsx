@@ -27,17 +27,15 @@ export default function SubFocusPicker({ goal, onClose, onPicked }: Props) {
     onClose();
   };
 
-  const sheetStyle: React.CSSProperties = isMobile
-    ? styles.bottomSheet
-    : styles.centeredCard;
+  const sheetStyle: React.CSSProperties = styles.centeredCard;
 
-  const sheetAnim = isMobile
-    ? { initial: { y: '100%' }, animate: { y: 0 }, exit: { y: '100%' } }
-    : {
-        initial: { opacity: 0, scale: 0.95 },
-        animate: { opacity: 1, scale: 1 },
-        exit: { opacity: 0, scale: 0.95 },
-      };
+  const sheetAnim = {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.95 },
+  };
+
+  void isMobile;
 
   return (
     <motion.div
@@ -93,8 +91,9 @@ const styles: Record<string, React.CSSProperties> = {
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
     display: 'flex',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
     zIndex: 350,
   },
   bottomSheet: {

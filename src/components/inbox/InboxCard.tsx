@@ -1,10 +1,18 @@
 import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Trash2 } from 'lucide-react';
 import { timeAgo } from '../../utils/dateHelpers';
 import type { InboxItem } from '../../types';
 
 const SWIPE_THRESHOLD = 80;
+const LONG_PRESS_MS = 500;
+const PRESS_MOVE_TOLERANCE = 8;
+
+function triggerHaptic() {
+  if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+    try { navigator.vibrate(15); } catch { /* noop */ }
+  }
+}
 
 interface InboxCardProps {
   item: InboxItem;
@@ -17,23 +25,50 @@ export default function InboxCard({ item, onDelete, onAccept, onTap }: InboxCard
   const [offsetX, setOffsetX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [removing, setRemoving] = useState(false);
+  const [longPressing, setLongPressing] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const startX = useRef(0);
   const startY = useRef(0);
   const hasMoved = useRef(false);
   const isHorizontalSwipe = useRef<boolean | null>(null);
+  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const longPressFired = useRef(false);
+
+  const cancelLongPress = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+    setLongPressing(false);
+  };
 
   const handleStart = (clientX: number, clientY: number) => {
     startX.current = clientX;
     startY.current = clientY;
     hasMoved.current = false;
     isHorizontalSwipe.current = null;
+    longPressFired.current = false;
     setIsDragging(true);
+    setLongPressing(true);
+    longPressTimer.current = setTimeout(() => {
+      longPressTimer.current = null;
+      longPressFired.current = true;
+      triggerHaptic();
+      setLongPressing(false);
+      setConfirming(true);
+    }, LONG_PRESS_MS);
   };
 
   const handleMove = (clientX: number, clientY: number) => {
     if (!isDragging) return;
     const dx = clientX - startX.current;
     const dy = clientY - startY.current;
+
+    if (longPressTimer.current) {
+      if (Math.abs(dx) > PRESS_MOVE_TOLERANCE || Math.abs(dy) > PRESS_MOVE_TOLERANCE) {
+        cancelLongPress();
+      }
+    }
 
     // Determine swipe direction on first significant move
     if (isHorizontalSwipe.current === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
@@ -49,6 +84,7 @@ export default function InboxCard({ item, onDelete, onAccept, onTap }: InboxCard
   const handleEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
+    cancelLongPress();
 
     if (offsetX > SWIPE_THRESHOLD) {
       onAccept(item);
@@ -61,9 +97,19 @@ export default function InboxCard({ item, onDelete, onAccept, onTap }: InboxCard
   };
 
   const handleClick = () => {
+    if (longPressFired.current) {
+      longPressFired.current = false;
+      return;
+    }
     if (!hasMoved.current) {
       onTap(item);
     }
+  };
+
+  const confirmDelete = () => {
+    setConfirming(false);
+    setRemoving(true);
+    setTimeout(() => onDelete(item), 250);
   };
 
   const bgColor = offsetX > 0
@@ -107,7 +153,8 @@ export default function InboxCard({ item, onDelete, onAccept, onTap }: InboxCard
             transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
             cursor: 'grab',
           }}
-          whileTap={!isDragging ? { scale: 0.98 } : undefined}
+          animate={{ scale: longPressing ? 1.04 : 1 }}
+          transition={{ type: 'spring', damping: 18, stiffness: 280 }}
           onTouchStart={(e) => handleStart(e.touches[0].clientX, e.touches[0].clientY)}
           onTouchMove={(e) => handleMove(e.touches[0].clientX, e.touches[0].clientY)}
           onTouchEnd={handleEnd}
@@ -126,6 +173,44 @@ export default function InboxCard({ item, onDelete, onAccept, onTap }: InboxCard
           )}
         </motion.div>
       </motion.div>
+
+      <AnimatePresence>
+        {confirming && (
+          <motion.div
+            style={styles.confirmOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setConfirming(false)}
+          >
+            <motion.div
+              style={styles.confirmCard}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 style={styles.confirmTitle}>Delete this idea?</h3>
+              <p style={styles.confirmBody}>"{item.title}"</p>
+              <div style={styles.confirmActions}>
+                <button
+                  style={styles.confirmCancel}
+                  onClick={() => setConfirming(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  style={styles.confirmDelete}
+                  onClick={confirmDelete}
+                >
+                  Delete
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -175,5 +260,66 @@ const styles: Record<string, React.CSSProperties> = {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+  },
+  confirmOverlay: {
+    position: 'fixed',
+    inset: 0,
+    background: 'var(--modal-backdrop)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    zIndex: 300,
+  },
+  confirmCard: {
+    background: 'var(--bg-elevated)',
+    borderRadius: 16,
+    padding: 24,
+    width: '100%',
+    maxWidth: 360,
+    boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
+  },
+  confirmTitle: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: 'var(--text-primary)',
+    marginBottom: 8,
+  },
+  confirmBody: {
+    fontSize: 14,
+    color: 'var(--text-secondary)',
+    fontStyle: 'italic',
+    marginBottom: 20,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  confirmActions: {
+    display: 'flex',
+    gap: 10,
+  },
+  confirmCancel: {
+    flex: 1,
+    padding: '12px 0',
+    borderRadius: 12,
+    background: 'var(--bg-card-hover)',
+    color: 'var(--text-primary)',
+    fontSize: 15,
+    fontWeight: 600,
+    border: 'none',
+    cursor: 'pointer',
+  },
+  confirmDelete: {
+    flex: 1,
+    padding: '12px 0',
+    borderRadius: 12,
+    background: '#EF4444',
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: 600,
+    border: 'none',
+    cursor: 'pointer',
   },
 };
