@@ -27,18 +27,19 @@ export default function QuickCaptureModal({ onClose, onSaved }: QuickCaptureModa
 
   const overlayStyle: React.CSSProperties = {
     ...styles.overlay,
-    alignItems: isMobile ? 'flex-end' : 'center',
+    alignItems: 'center',
+    padding: isMobile ? 20 : 0,
   };
 
   const modalStyle: React.CSSProperties = {
     ...styles.modal,
-    borderRadius: isMobile ? '20px 20px 0 0' : 16,
+    borderRadius: 16,
     maxWidth: isMobile ? 480 : 450,
   };
 
-  const modalInitial = isMobile ? { y: '100%' } : { scale: 0.95, opacity: 0 };
-  const modalAnimate = isMobile ? { y: 0 } : { scale: 1, opacity: 1 };
-  const modalExit = isMobile ? { y: '100%' } : { scale: 0.95, opacity: 0 };
+  const modalInitial = { scale: 0.95, opacity: 0 };
+  const modalAnimate = { scale: 1, opacity: 1 };
+  const modalExit = { scale: 0.95, opacity: 0 };
 
   return (
     <motion.div
