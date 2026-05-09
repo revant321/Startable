@@ -124,6 +124,21 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Block touch-and-hold selection / callout on non-text UI. Inputs,
+   textareas, and explicitly opted-in elements keep normal selection
+   so paragraph text and copy/paste still work. */
+img, svg, button, [role="button"], label,
+h1, h2, h3, h4, h5, h6 {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea, [contenteditable="true"], .selectable, p, span {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
   font-size: 16px;
