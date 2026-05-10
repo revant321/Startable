@@ -325,7 +325,7 @@ const styles: Record<string, React.CSSProperties> = {
   singleColumn: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 16,
+    gap: 24,
   },
   twoColumn: {
     display: 'grid',
@@ -347,8 +347,9 @@ const styles: Record<string, React.CSSProperties> = {
   titleSection: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 10,
+    gap: 12,
     paddingTop: 8,
+    paddingBottom: 4,
   },
   title: {
     fontWeight: 700,

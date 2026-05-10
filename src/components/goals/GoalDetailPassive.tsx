@@ -551,7 +551,7 @@ const styles: Record<string, React.CSSProperties> = {
   singleColumn: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 16,
+    gap: 24,
   },
   twoColumn: {
     display: 'grid',
