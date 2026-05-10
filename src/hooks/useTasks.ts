@@ -66,7 +66,13 @@ export async function updateTask(
   id: number,
   updates: Partial<Pick<QuickTask, 'title' | 'dueDate'>>
 ): Promise<void> {
-  await db.quickTasks.update(id, updates);
+  // Dexie's update() silently skips properties whose value is `undefined`,
+  // so clearing a field needs `null`. Re-map undefined → null before write.
+  const cleaned: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(updates)) {
+    cleaned[key] = value === undefined ? null : value;
+  }
+  await db.quickTasks.update(id, cleaned);
 }
 
 export async function clearCompleted(): Promise<void> {

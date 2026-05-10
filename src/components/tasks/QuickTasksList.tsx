@@ -244,6 +244,10 @@ function TaskRow({ task }: { task: QuickTask }) {
 
   const saveDate = async (next: string) => {
     if (task.id == null) return;
+    if (next === (task.dueDate ?? '')) {
+      setEditingDate(false);
+      return;
+    }
     await updateTask(task.id, { dueDate: next || undefined });
     setDraftDate(next);
     setEditingDate(false);
@@ -330,8 +334,11 @@ function TaskRow({ task }: { task: QuickTask }) {
             type="date"
             style={styles.dateInput}
             value={draftDate}
-            onChange={(e) => saveDate(e.target.value)}
-            onBlur={() => setEditingDate(false)}
+            onChange={(e) => {
+              setDraftDate(e.target.value);
+              saveDate(e.target.value);
+            }}
+            onBlur={(e) => saveDate(e.target.value)}
             autoFocus
           />
         ) : task.dueDate ? (
