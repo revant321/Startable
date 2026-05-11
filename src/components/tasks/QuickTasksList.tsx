@@ -33,10 +33,15 @@ export default function QuickTasksList() {
   // Local order state for drag — keeps the list smooth during DB writes
   const [localOrder, setLocalOrder] = useState<QuickTask[]>(incomplete);
   useEffect(() => {
-    // Only sync when not actively dragging
     setLocalOrder(incomplete);
+    // Re-sync whenever the actual row contents (not just id+sortOrder)
+    // change, so edits to title/dueDate propagate from the live query.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [incomplete.map((t) => `${t.id}:${t.sortOrder}`).join(',')]);
+  }, [
+    incomplete
+      .map((t) => `${t.id}:${t.sortOrder}:${t.title}:${t.dueDate ?? ''}`)
+      .join(','),
+  ]);
 
   const [adding, setAdding] = useState(false);
   const [newTitle, setNewTitle] = useState('');
