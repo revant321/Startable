@@ -23,10 +23,10 @@
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(28, 28, 30, 0.68);
-  --nav-glass-border: rgba(255, 255, 255, 0.08);
-  --nav-active-pill-bg: rgba(255, 255, 255, 0.14);
-  --nav-active-pill-border: rgba(255, 255, 255, 0.1);
+  --nav-glass-bg: rgba(58, 58, 62, 0.55);
+  --nav-glass-border: rgba(255, 255, 255, 0.14);
+  --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
+  --nav-active-pill-border: rgba(255, 255, 255, 0.18);
 
   color-scheme: dark;
 }
@@ -53,10 +53,10 @@
     --nav-icon-inactive: #8E8E93;
     --nav-icon-active: #000000;
 
-    --nav-glass-bg: rgba(255, 255, 255, 0.68);
-    --nav-glass-border: rgba(0, 0, 0, 0.06);
-    --nav-active-pill-bg: rgba(0, 0, 0, 0.1);
-    --nav-active-pill-border: rgba(0, 0, 0, 0.08);
+    --nav-glass-bg: rgba(255, 255, 255, 0.55);
+    --nav-glass-border: rgba(0, 0, 0, 0.1);
+    --nav-active-pill-bg: rgba(0, 0, 0, 0.18);
+    --nav-active-pill-border: rgba(0, 0, 0, 0.14);
 
     color-scheme: light;
   }
@@ -83,10 +83,10 @@ html.dark {
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(28, 28, 30, 0.68);
-  --nav-glass-border: rgba(255, 255, 255, 0.08);
-  --nav-active-pill-bg: rgba(255, 255, 255, 0.14);
-  --nav-active-pill-border: rgba(255, 255, 255, 0.1);
+  --nav-glass-bg: rgba(58, 58, 62, 0.55);
+  --nav-glass-border: rgba(255, 255, 255, 0.14);
+  --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
+  --nav-active-pill-border: rgba(255, 255, 255, 0.18);
 
   color-scheme: dark;
 }
@@ -111,10 +111,10 @@ html.light {
   --nav-icon-inactive: #8E8E93;
   --nav-icon-active: #000000;
 
-  --nav-glass-bg: rgba(255, 255, 255, 0.68);
-  --nav-glass-border: rgba(0, 0, 0, 0.06);
-  --nav-active-pill-bg: rgba(0, 0, 0, 0.1);
-  --nav-active-pill-border: rgba(0, 0, 0, 0.08);
+  --nav-glass-bg: rgba(255, 255, 255, 0.55);
+  --nav-glass-border: rgba(0, 0, 0, 0.1);
+  --nav-active-pill-bg: rgba(0, 0, 0, 0.18);
+  --nav-active-pill-border: rgba(0, 0, 0, 0.14);
 
   color-scheme: light;
 }
@@ -227,7 +227,7 @@ body {
 
 @media (max-width: 767px) {
   .app-main {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 12px);
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px) + 8px);
   }
 }
 

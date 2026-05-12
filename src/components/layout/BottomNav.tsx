@@ -49,8 +49,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
               <img
                 src={icon}
                 alt=""
-                width={24}
-                height={24}
+                width={32}
+                height={32}
                 draggable={false}
                 className="nav-icon"
                 style={{
@@ -80,20 +80,20 @@ export default function BottomNav({ visible }: BottomNavProps) {
 const styles: Record<string, React.CSSProperties> = {
   nav: {
     position: 'fixed',
-    bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
-    left: 32,
-    right: 32,
+    bottom: 'calc(env(safe-area-inset-bottom, 0px) + 4px)',
+    left: 22,
+    right: 22,
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '8px 6px',
+    padding: '6px 6px',
     borderRadius: 999,
     background: 'var(--nav-glass-bg)',
     backdropFilter: 'blur(60px) saturate(180%)',
     WebkitBackdropFilter: 'blur(60px) saturate(180%)',
-    border: '1px solid var(--nav-glass-border)',
+    border: '1.5px solid var(--nav-glass-border)',
     boxShadow:
-      '0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+      '0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
     zIndex: 50,
@@ -119,18 +119,17 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: 34,
+    height: 36,
   },
   activePill: {
     position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: '50%',
-    width: 44,
-    marginLeft: -22,
-    borderRadius: 12,
+    top: 1,
+    bottom: 1,
+    left: 3,
+    right: 3,
+    borderRadius: 14,
     background: 'var(--nav-active-pill-bg)',
-    border: 'none',
+    border: '1px solid var(--nav-active-pill-border)',
     zIndex: 0,
   },
   tabLabel: {
