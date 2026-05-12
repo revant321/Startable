@@ -49,8 +49,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
               <img
                 src={icon}
                 alt=""
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 draggable={false}
                 className="nav-icon"
                 style={{
@@ -119,15 +119,16 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: 38,
+    height: 34,
   },
   activePill: {
     position: 'absolute',
     top: 1,
     bottom: 1,
-    left: 2,
-    right: 2,
-    borderRadius: 999,
+    left: '50%',
+    width: 52,
+    marginLeft: -26,
+    borderRadius: 14,
     background: 'var(--nav-active-pill-bg)',
     border: '1px solid var(--nav-active-pill-border)',
     zIndex: 0,
