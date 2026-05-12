@@ -231,6 +231,29 @@ body {
   }
 }
 
+/* When the user holds a phone in landscape, blank the app and show a
+   rotation hint. iOS PWA standalone respects the manifest orientation
+   field on first launch but Safari (and some installs) can still let
+   the page rotate. This is the visual fallback. */
+@media (orientation: landscape) and (max-device-height: 600px) {
+  .app-shell { display: none !important; }
+  body::before {
+    content: 'Rotate your phone to portrait';
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding: 24px;
+    z-index: 9999;
+  }
+}
+
 .app-content {
   width: 100%;
   display: flex;
