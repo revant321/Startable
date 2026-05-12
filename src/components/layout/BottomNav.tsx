@@ -48,8 +48,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
             <img
               src={icon}
               alt=""
-              width={48}
-              height={48}
+              width={58}
+              height={58}
               draggable={false}
               className="nav-icon"
               style={{
