@@ -119,7 +119,7 @@ const styles: Record<string, React.CSSProperties> = {
     bottom: 3,
     left: 2,
     right: 2,
-    borderRadius: 16,
+    borderRadius: 999,
     background: 'var(--nav-active-pill-bg)',
     border: '1px solid var(--nav-active-pill-border)',
     zIndex: 0,
