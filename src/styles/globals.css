@@ -1,6 +1,6 @@
 /* Default theme tokens — dark-first (Apple-style layered grays) */
 :root {
-  --bg-primary: #1C1C1E;
+  --bg-primary: #0D0D10;
   --bg-card: #2C2C2E;
   --bg-card-hover: #3A3A3C;
   --bg-elevated: #3A3A3C;
@@ -23,7 +23,7 @@
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(40, 40, 44, 0.4);
+  --nav-glass-bg: rgba(255, 255, 255, 0.05);
   --nav-glass-border: rgba(255, 255, 255, 0.14);
   --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
   --nav-active-pill-border: rgba(255, 255, 255, 0.18);
@@ -64,7 +64,7 @@
 
 /* Explicit forced themes — override the media query above */
 html.dark {
-  --bg-primary: #1C1C1E;
+  --bg-primary: #0D0D10;
   --bg-card: #2C2C2E;
   --bg-card-hover: #3A3A3C;
   --bg-elevated: #3A3A3C;
@@ -83,7 +83,7 @@ html.dark {
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(40, 40, 44, 0.4);
+  --nav-glass-bg: rgba(255, 255, 255, 0.05);
   --nav-glass-border: rgba(255, 255, 255, 0.14);
   --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
   --nav-active-pill-border: rgba(255, 255, 255, 0.18);
