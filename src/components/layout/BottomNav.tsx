@@ -48,8 +48,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
             <img
               src={icon}
               alt=""
-              width={44}
-              height={44}
+              width={48}
+              height={48}
               draggable={false}
               className="nav-icon"
               style={{
@@ -78,16 +78,16 @@ export default function BottomNav({ visible }: BottomNavProps) {
 const styles: Record<string, React.CSSProperties> = {
   nav: {
     position: 'fixed',
-    bottom: 4,
+    bottom: 7,
     left: 22,
     right: 22,
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingTop: 2,
+    paddingTop: 0,
     paddingLeft: 6,
     paddingRight: 6,
-    paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2px)',
+    paddingBottom: 'env(safe-area-inset-bottom, 0px)',
     borderRadius: 999,
     background: 'var(--nav-glass-bg)',
     backdropFilter: 'blur(60px) saturate(180%)',
@@ -103,8 +103,8 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 1,
-    padding: '4px 4px',
+    gap: 0,
+    padding: '2px 4px',
     position: 'relative',
     flex: 1,
     background: 'none',
@@ -125,7 +125,8 @@ const styles: Record<string, React.CSSProperties> = {
     zIndex: 0,
   },
   tabLabel: {
-    fontSize: 11,
+    fontSize: 10,
+    lineHeight: 1.1,
     fontWeight: 500,
     color: 'var(--nav-icon-active)',
     letterSpacing: '0.2px',
