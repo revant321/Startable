@@ -60,14 +60,6 @@ export default function BottomNav({ visible }: BottomNavProps) {
                 WebkitTouchCallout: 'none',
               }}
             />
-            <span
-              style={{
-                ...styles.tabLabel,
-                opacity: active ? 1 : 0.55,
-              }}
-            >
-              {label}
-            </span>
           </motion.button>
         );
       })}
@@ -87,7 +79,7 @@ const styles: Record<string, React.CSSProperties> = {
     paddingTop: 0,
     paddingLeft: 6,
     paddingRight: 6,
-    paddingBottom: 14,
+    paddingBottom: 0,
     borderRadius: 999,
     background: 'var(--nav-glass-bg)',
     backdropFilter: 'blur(60px) saturate(180%)',
