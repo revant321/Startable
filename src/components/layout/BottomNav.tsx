@@ -115,8 +115,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   activePill: {
     position: 'absolute',
-    top: 2,
-    bottom: -12,
+    top: 3,
+    bottom: 3,
     left: 2,
     right: 2,
     borderRadius: 16,
