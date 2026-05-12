@@ -23,7 +23,7 @@
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(58, 58, 62, 0.55);
+  --nav-glass-bg: rgba(40, 40, 44, 0.4);
   --nav-glass-border: rgba(255, 255, 255, 0.14);
   --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
   --nav-active-pill-border: rgba(255, 255, 255, 0.18);
@@ -83,7 +83,7 @@ html.dark {
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(58, 58, 62, 0.55);
+  --nav-glass-bg: rgba(40, 40, 44, 0.4);
   --nav-glass-border: rgba(255, 255, 255, 0.14);
   --nav-active-pill-bg: rgba(255, 255, 255, 0.22);
   --nav-active-pill-border: rgba(255, 255, 255, 0.18);
