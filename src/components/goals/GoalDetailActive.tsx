@@ -77,7 +77,7 @@ export default function GoalDetailActive({ goal }: Props) {
   };
 
   return (
-    <div style={{ ...styles.wrap, padding: isMobile ? '0 16px 100px' : '0 32px 60px' }}>
+    <div style={{ ...styles.wrap, padding: isMobile ? '0 16px 120px' : '0 32px 60px' }}>
       <header style={styles.header}>
         <motion.button
           style={styles.iconBtn}

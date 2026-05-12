@@ -488,7 +488,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     gap: 28,
-    paddingBottom: 16,
+    paddingBottom: 120,
   },
   section: {
     display: 'flex',

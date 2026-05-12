@@ -206,13 +206,13 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
-    paddingBottom: 16,
+    paddingBottom: 120,
   },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
     gap: 16,
-    paddingBottom: 16,
+    paddingBottom: 120,
     alignItems: 'start',
   },
   fab: {

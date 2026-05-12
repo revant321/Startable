@@ -356,12 +356,12 @@ const styles: Record<string, React.CSSProperties> = {
   list: {
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: 16,
+    paddingBottom: 120,
   },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-    paddingBottom: 16,
+    paddingBottom: 120,
     alignItems: 'start',
   },
   fab: {

@@ -120,7 +120,7 @@ export default function ArchiveScreen() {
         </TabButton>
       </div>
 
-      <div style={{ paddingBottom: 16 }}>
+      <div style={{ paddingBottom: 120 }}>
         <AnimatePresence mode="wait">
           {tab === 'archive' ? (
             <motion.div
