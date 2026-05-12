@@ -63,7 +63,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     gap: 18,
-    paddingBottom: 120,
+    paddingBottom: 16,
   },
   divider: {
     height: 1,

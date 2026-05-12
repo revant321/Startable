@@ -119,7 +119,7 @@ export default function InboxScreen() {
           style={{
             ...styles.fab,
             position: 'fixed',
-            bottom: isMobile ? 'calc(90px + env(safe-area-inset-bottom, 0px))' : 32,
+            bottom: isMobile ? 'calc(96px + env(safe-area-inset-bottom, 0px))' : 32,
             right: isMobile ? 20 : 32,
           }}
           whileTap={{ scale: 0.9 }}
@@ -356,12 +356,12 @@ const styles: Record<string, React.CSSProperties> = {
   list: {
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-    paddingBottom: 100,
+    paddingBottom: 16,
     alignItems: 'start',
   },
   fab: {

@@ -74,7 +74,7 @@ export default function GoalsScreen() {
               ? '0 4px 16px rgba(52, 211, 153, 0.3)'
               : '0 4px 16px rgba(96, 165, 250, 0.3)',
             position: 'fixed',
-            bottom: isMobile ? 'calc(90px + env(safe-area-inset-bottom, 0px))' : 32,
+            bottom: isMobile ? 'calc(96px + env(safe-area-inset-bottom, 0px))' : 32,
             right: isMobile ? 20 : 32,
           }}
           whileTap={{ scale: 0.9 }}
@@ -206,13 +206,13 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
     gap: 16,
-    paddingBottom: 100,
+    paddingBottom: 16,
     alignItems: 'start',
   },
   fab: {

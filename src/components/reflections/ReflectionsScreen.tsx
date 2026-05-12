@@ -367,7 +367,7 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: 'center',
     minHeight: '50vh',
     gap: 8,
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
   emptyTitle: {
     fontSize: 17,
@@ -383,13 +383,13 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
   groups: {
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
-    paddingBottom: 100,
+    paddingBottom: 16,
   },
   group: {
     display: 'flex',
