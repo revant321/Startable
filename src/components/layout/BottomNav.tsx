@@ -60,6 +60,14 @@ export default function BottomNav({ visible }: BottomNavProps) {
                 WebkitTouchCallout: 'none',
               }}
             />
+            <span
+              style={{
+                ...styles.tabLabel,
+                opacity: active ? 1 : 0.55,
+              }}
+            >
+              {label}
+            </span>
           </motion.button>
         );
       })}
@@ -118,7 +126,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tabLabel: {
     fontSize: 10,
-    lineHeight: 1.1,
+    lineHeight: 1,
     fontWeight: 500,
     color: 'var(--nav-icon-active)',
     letterSpacing: '0.2px',
