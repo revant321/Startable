@@ -7,7 +7,7 @@ const tabs = [
   { path: '/', icon: `${BASE}icons/home.png`, label: 'Home' },
   { path: '/inbox', icon: `${BASE}icons/inbox.png`, label: 'Inbox' },
   { path: '/goals', icon: `${BASE}icons/goals.png`, label: 'Goals' },
-  { path: '/reflections', icon: `${BASE}icons/reflections.png`, label: 'Reflections' },
+  { path: '/reflections', icon: `${BASE}icons/reflections.png`, label: 'Reflect' },
 ] as const;
 
 interface BottomNavProps {
@@ -117,8 +117,8 @@ const styles: Record<string, React.CSSProperties> = {
     position: 'absolute',
     top: 3,
     bottom: 3,
-    left: 2,
-    right: 2,
+    left: -4,
+    right: -4,
     borderRadius: 999,
     background: 'var(--nav-active-pill-bg)',
     border: '1px solid var(--nav-active-pill-border)',
