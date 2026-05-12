@@ -23,9 +23,9 @@
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(28, 28, 30, 0.82);
+  --nav-glass-bg: rgba(28, 28, 30, 0.68);
   --nav-glass-border: rgba(255, 255, 255, 0.08);
-  --nav-active-pill-bg: rgba(255, 255, 255, 0.08);
+  --nav-active-pill-bg: rgba(255, 255, 255, 0.14);
   --nav-active-pill-border: rgba(255, 255, 255, 0.1);
 
   color-scheme: dark;
@@ -53,9 +53,9 @@
     --nav-icon-inactive: #8E8E93;
     --nav-icon-active: #000000;
 
-    --nav-glass-bg: rgba(255, 255, 255, 0.82);
+    --nav-glass-bg: rgba(255, 255, 255, 0.68);
     --nav-glass-border: rgba(0, 0, 0, 0.06);
-    --nav-active-pill-bg: rgba(0, 0, 0, 0.06);
+    --nav-active-pill-bg: rgba(0, 0, 0, 0.1);
     --nav-active-pill-border: rgba(0, 0, 0, 0.08);
 
     color-scheme: light;
@@ -83,9 +83,9 @@ html.dark {
   --nav-icon-inactive: #98989F;
   --nav-icon-active: #FFFFFF;
 
-  --nav-glass-bg: rgba(28, 28, 30, 0.82);
+  --nav-glass-bg: rgba(28, 28, 30, 0.68);
   --nav-glass-border: rgba(255, 255, 255, 0.08);
-  --nav-active-pill-bg: rgba(255, 255, 255, 0.08);
+  --nav-active-pill-bg: rgba(255, 255, 255, 0.14);
   --nav-active-pill-border: rgba(255, 255, 255, 0.1);
 
   color-scheme: dark;
@@ -111,9 +111,9 @@ html.light {
   --nav-icon-inactive: #8E8E93;
   --nav-icon-active: #000000;
 
-  --nav-glass-bg: rgba(255, 255, 255, 0.82);
+  --nav-glass-bg: rgba(255, 255, 255, 0.68);
   --nav-glass-border: rgba(0, 0, 0, 0.06);
-  --nav-active-pill-bg: rgba(0, 0, 0, 0.06);
+  --nav-active-pill-bg: rgba(0, 0, 0, 0.1);
   --nav-active-pill-border: rgba(0, 0, 0, 0.08);
 
   color-scheme: light;
