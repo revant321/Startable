@@ -132,6 +132,6 @@ const styles: Record<string, React.CSSProperties> = {
     letterSpacing: '0.2px',
     position: 'relative',
     zIndex: 1,
-    transform: 'translateY(-3px)',
+    transform: 'translateY(-6px)',
   },
 };
