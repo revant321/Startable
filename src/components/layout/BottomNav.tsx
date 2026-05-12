@@ -93,8 +93,7 @@ const styles: Record<string, React.CSSProperties> = {
     backdropFilter: 'blur(60px) saturate(180%)',
     WebkitBackdropFilter: 'blur(60px) saturate(180%)',
     border: '1.5px solid var(--nav-glass-border)',
-    boxShadow:
-      '0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+    boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.12)',
     userSelect: 'none',
     WebkitUserSelect: 'none',
     zIndex: 50,
