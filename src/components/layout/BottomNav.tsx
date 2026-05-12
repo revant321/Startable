@@ -78,7 +78,7 @@ export default function BottomNav({ visible }: BottomNavProps) {
 const styles: Record<string, React.CSSProperties> = {
   nav: {
     position: 'fixed',
-    bottom: 7,
+    bottom: 14,
     left: 22,
     right: 22,
     display: 'flex',
