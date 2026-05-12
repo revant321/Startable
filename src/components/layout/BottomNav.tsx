@@ -48,8 +48,8 @@ export default function BottomNav({ visible }: BottomNavProps) {
             <img
               src={icon}
               alt=""
-              width={58}
-              height={58}
+              width={60}
+              height={60}
               draggable={false}
               className="nav-icon"
               style={{
@@ -132,6 +132,6 @@ const styles: Record<string, React.CSSProperties> = {
     letterSpacing: '0.2px',
     position: 'relative',
     zIndex: 1,
-    transform: 'translateY(-6px)',
+    transform: 'translateY(-9px)',
   },
 };
